@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>CV disponibles</title>
+    <link rel="stylesheet" href="{% static 'cv/css/style.css' %}">
+</head>
+
+<body>
+<div class="container">
+    <h1>Hoja de Vida Disponibles</h1>
+
+    {% for perfil in perfiles %}
+        <div class="card">
+
+            {% if perfil.foto_perfil %}
+                <img src="{{ perfil.foto_perfil.url }}" class="img-perfil">
+            {% endif %}
+
+            <h2>{{ perfil.nombres }} {{ perfil.apellidos }}</h2>
+            <p>{{ perfil.descripcionperfil }}</p>
+
+            <!-- BOTÓN -->
+            <a href="{% url 'detalle_cv' perfil.idperfil %}" class="btn">
+                Ver CV
+            </a>
+
+        </div>
+    {% empty %}
+        <p>No hay CV disponibles.</p>
+    {% endfor %}
+</div>
+</body>
+</html>

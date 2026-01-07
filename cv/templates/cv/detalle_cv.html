@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>CV {{ perfil.nombres }}</title>
+    <link rel="stylesheet" href="{% static 'cv/css/style.css' %}">
+</head>
+
+<body>
+<div class="container">
+    
+    <div class="cv-actions">
+    <a href="{% url 'cv_pdf' perfil.idperfil %}" class="btn-pdf">
+        Descargar CV en PDF
+    </a>
+</div>
+
+
+    <div class="cv-layout">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="cv-left">
+
+            <div class="cv-photo">
+                {% if perfil.foto_perfil %}
+                    <img src="{{ perfil.foto_perfil.url }}" alt="Foto de perfil">
+                {% endif %}
+            </div>
+
+            <h3>SOBRE MÍ</h3>
+            <p>{{ perfil.descripcionperfil }}</p>
+
+            <h3>CONTACTO</h3>
+            <p><strong>Teléfono:</strong> {{ perfil.telefonofijo }}</p>
+            <p><strong>Dirección:</strong> {{ perfil.direcciondomiciliaria }}</p>
+
+        </div>
+
+        <!-- COLUMNA DERECHA -->
+        <div class="cv-right">
+
+            <h1>{{ perfil.nombres }} {{ perfil.apellidos }}</h1>
+            <h2>{{ perfil.nacionalidad }}</h2>
+
+            <!-- EXPERIENCIA -->
+            <div class="cv-section">
+                <h3>EXPERIENCIA LABORAL</h3>
+
+                {% for exp in perfil.experiencias.all %}
+                    {% if exp.activarparaqueseveaenfront %}
+                        <p><strong>{{ exp.cargodesempenado }}</strong></p>
+                        <p>{{ exp.descripcionfunciones }}</p>
+                        <br>
+                    {% endif %}
+                {% empty %}
+                    <p>No registra experiencia laboral.</p>
+                {% endfor %}
+            </div>
+
+            <!-- CURSOS -->
+            <div class="cv-section">
+                <h3>CURSOS REALIZADOS</h3>
+
+                {% for curso in perfil.cursos.all %}
+                    {% if curso.activarparaqueseveaenfront %}
+                        <p>{{ curso.nombrecurso }} ({{ curso.totalhoras }} horas)</p>
+                    {% endif %}
+                {% empty %}
+                    <p>No registra cursos.</p>
+                {% endfor %}
+            </div>
+
+            <!-- RECONOCIMIENTOS -->
+            <div class="cv-section">
+                <h3>RECONOCIMIENTOS</h3>
+
+                {% for rec in perfil.reconocimientos.all %}
+                    {% if rec.activarparaqueseveaenfront %}
+                        <p><strong>{{ rec.tiporeconocimiento }}</strong></p>
+                        <p>{{ rec.descripcionreconocimiento }}</p>
+                        <br>
+                    {% endif %}
+                {% empty %}
+                    <p>No registra reconocimientos.</p>
+                {% endfor %}
+            </div>
+
+            <!-- PRODUCTOS ACADÉMICOS -->
+            <div class="cv-section">
+                <h3>PRODUCTOS ACADÉMICOS</h3>
+
+                {% for prod in perfil.productos_academicos.all %}
+                    {% if prod.activarparaqueseveaenfront %}
+                        <p><strong>{{ prod.nombrerecurso }}</strong></p>
+                        <p><em>{{ prod.clasificador }}</em></p>
+                        <br>
+                    {% endif %}
+                {% empty %}
+                    <p>No registra productos académicos.</p>
+                {% endfor %}
+            </div>
+
+            <!-- PRODUCTOS LABORALES -->
+            <div class="cv-section">
+                <h3>PRODUCTOS LABORALES</h3>
+
+                {% for prod in perfil.productos_laborales.all %}
+                    {% if prod.activarparaqueseveaenfront %}
+                        <p><strong>{{ prod.nombreproducto }}</strong></p>
+                        <p>{{ prod.descripcion }}</p>
+                        <br>
+                    {% endif %}
+                {% empty %}
+                    <p>No registra productos laborales.</p>
+                {% endfor %}
+            </div>
+
+            <!-- VENTA DE GARAGE -->
+            <div class="cv-section">
+                <h3>VENTA DE GARAGE</h3>
+
+                {% for venta in perfil.ventas_garage.all %}
+                    {% if venta.activarparaqueseveaenfront %}
+                        <p><strong>{{ venta.nombreproducto }}</strong></p>
+                        <p>{{ venta.descripcion }}</p>
+                        <br>
+                    {% endif %}
+                {% empty %}
+                    <p>No registra productos en venta.</p>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

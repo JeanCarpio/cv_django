@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="{% static 'cv/css/style.css' %}">
+</head>
+
+<body class="welcome-body">
+
+    <div class="welcome-container">
+        <h1>Bienvenido a Nuestra Plataforma</h1>
+        <p>
+            Explora currículums profesionales creados de forma clara,
+            moderna y organizada.
+        </p>
+
+        <a href="{% url 'lista_cv' %}" class="welcome-btn">
+            Ver CVs Disponibles
+        </a>
+    </div>
+
+</body>
+</html>

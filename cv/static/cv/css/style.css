@@ -1,0 +1,222 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== GENERAL ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f4f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* ===== CV LAYOUT ===== */
+.cv-layout {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    background: #f5f1ec;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+}
+
+/* ===== COLUMNA IZQUIERDA ===== */
+.cv-left {
+    background: #efe9e3;
+    padding: 35px 30px;
+}
+
+.cv-photo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.cv-photo img {
+    width: 160px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid #b08968;
+}
+
+/* TÍTULOS IZQUIERDA */
+.cv-left h3 {
+    font-size: 15px;
+    letter-spacing: 2px;
+    color: #6b665f;
+    margin: 25px 0 10px;
+}
+
+/* TEXTO IZQUIERDA */
+.cv-left p {
+    font-size: 14px;
+    color: #4b4743;
+    margin-bottom: 8px;
+}
+
+/* ===== COLUMNA DERECHA ===== */
+.cv-right {
+    background: #ffffff;
+    padding: 45px 40px;
+}
+
+/* NOMBRE */
+.cv-right h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #3f3a36;
+    margin-bottom: 5px;
+}
+
+/* SUBTÍTULO */
+.cv-right h2 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #b08968;
+    margin-bottom: 30px;
+}
+
+/* SECCIONES */
+.cv-section {
+    margin-bottom: 30px;
+}
+
+/* TÍTULOS SECCIÓN */
+.cv-section h3 {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #6b665f;
+    margin-bottom: 12px;
+}
+
+/* TEXTO DERECHA */
+.cv-right p {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.cv-right em {
+    font-size: 14px;
+    color: #777;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .cv-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cv-left,
+    .cv-right {
+        padding: 30px;
+    }
+
+    .cv-photo img {
+        width: 140px;
+        height: 180px;
+    }
+
+    .cv-right h1 {
+        font-size: 28px;
+    }
+
+}
+
+/* ===== BIENVENIDA (para página inicial) ===== */
+.welcome-body {
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f1ec, #e9e3dc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-container {
+    background: #ffffff;
+    padding: 55px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 520px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.welcome-container h1 {
+    font-size: 38px;
+    color: #3f3a36;
+    margin-bottom: 15px;
+}
+
+.welcome-container p {
+    font-size: 16px;
+    color: #6b665f;
+    margin-bottom: 35px;
+}
+
+.welcome-btn {
+    padding: 14px 32px;
+    background-color: #b08968;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.welcome-btn:hover {
+    background-color: #9c7254;
+}
+
+/* ===== BOTÓN VER CV ===== */
+.btn {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 10px 24px;
+    border: 2px solid #b08968;
+    background-color: transparent;
+    color: #b08968;
+    font-weight: 600;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #b08968;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(176, 137, 104, 0.35);
+}
+
+
+.cv-actions {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.btn-pdf {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.btn-pdf:hover {
+    background-color: #1a252f;
+}
+
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CV {{ perfil.nombres }} {{ perfil.apellidos }}</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            color: #222;
+            margin: 30px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        h3 {
+            font-size: 13px;
+            margin-top: 20px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin: 4px 0;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .columns {
+            width: 100%;
+            display: table;
+        }
+
+        .left {
+            display: table-cell;
+            width: 30%;
+            padding-right: 15px;
+            vertical-align: top;
+        }
+
+        .right {
+            display: table-cell;
+            width: 70%;
+            vertical-align: top;
+        }
+
+        .photo {
+            margin-bottom: 15px;
+        }
+
+        .photo img {
+            width: 120px;
+            border: 1px solid #ccc;
+        }
+
+        .section {
+            margin-bottom: 12px;
+        }
+
+        .item {
+            margin-bottom: 8px;
+        }
+
+        .small {
+            font-size: 11px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>{{ perfil.nombres }} {{ perfil.apellidos }}</h1>
+    <h2>{{ perfil.nacionalidad }}</h2>
+</div>
+
+<div class="columns">
+
+    <!-- COLUMNA IZQUIERDA -->
+    <div class="left">
+
+        {% if perfil.foto_perfil %}
+        <div class="photo">
+            <img src="{{ perfil.foto_perfil.path }}">
+        </div>
+        {% endif %}
+
+        <div class="section">
+            <h3>Sobre mí</h3>
+            <p>{{ perfil.descripcionperfil }}</p>
+        </div>
+
+        <div class="section">
+            <h3>Contacto</h3>
+            <p><strong>Tel:</strong> {{ perfil.telefonofijo }}</p>
+            <p><strong>Dirección:</strong> {{ perfil.direcciondomiciliaria }}</p>
+        </div>
+
+    </div>
+
+    <!-- COLUMNA DERECHA -->
+    <div class="right">
+
+        <div class="section">
+            <h3>Experiencia laboral</h3>
+            {% for exp in perfil.experiencias.all %}
+                {% if exp.activarparaqueseveaenfront %}
+                    <div class="item">
+                        <strong>{{ exp.cargodesempenado }}</strong>
+                        <p class="small">{{ exp.descripcionfunciones }}</p>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p>No registra experiencia laboral.</p>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Cursos realizados</h3>
+            {% for curso in perfil.cursos.all %}
+                {% if curso.activarparaqueseveaenfront %}
+                    <p>{{ curso.nombrecurso }} ({{ curso.totalhoras }} horas)</p>
+                {% endif %}
+            {% empty %}
+                <p>No registra cursos.</p>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Reconocimientos</h3>
+            {% for rec in perfil.reconocimientos.all %}
+                {% if rec.activarparaqueseveaenfront %}
+                    <p><strong>{{ rec.tiporeconocimiento }}</strong></p>
+                    <p class="small">{{ rec.descripcionreconocimiento }}</p>
+                {% endif %}
+            {% empty %}
+                <p>No registra reconocimientos.</p>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Productos académicos</h3>
+            {% for prod in perfil.productos_academicos.all %}
+                {% if prod.activarparaqueseveaenfront %}
+                    <p><strong>{{ prod.nombrerecurso }}</strong></p>
+                    <p class="small">{{ prod.clasificador }}</p>
+                {% endif %}
+            {% empty %}
+                <p>No registra productos académicos.</p>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Productos laborales</h3>
+            {% for prod in perfil.productos_laborales.all %}
+                {% if prod.activarparaqueseveaenfront %}
+                    <p><strong>{{ prod.nombreproducto }}</strong></p>
+                    <p class="small">{{ prod.descripcion }}</p>
+                {% endif %}
+            {% empty %}
+                <p>No registra productos laborales.</p>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Venta de garage</h3>
+            {% for venta in perfil.ventas_garage.all %}
+                {% if venta.activarparaqueseveaenfront %}
+                    <p><strong>{{ venta.nombreproducto }}</strong></p>
+                    <p class="small">{{ venta.descripcion }}</p>
+                {% endif %}
+            {% empty %}
+                <p>No registra productos en venta.</p>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
